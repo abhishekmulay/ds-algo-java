@@ -82,17 +82,44 @@ public class DoublyLinkedList<T> {
 //        int position = this.indexOf(dataToRemove);
 //        if (position == -1)
 //            return false;
+        if (this.size() == 1 && this.head.getData() == dataToRemove) {
+            this.head = null;
+            this.tail = null;
+            this.size -= 1;
+            return true;
+        }
+
+        else if (this.head.getData() == dataToRemove) {
+            Node nextNode = this.head.getNext();
+            Node previousNode = this.head.getPrevious();
+            previousNode.setNext(nextNode);
+            nextNode.setPrevious(previousNode);
+            this.head = nextNode;
+            this.size -= 1;
+            return true;
+        }
+
+        else if (this.tail.getData() == dataToRemove) {
+            Node nextNode = this.tail.getNext();
+            Node previousNode = this.tail.getPrevious();
+            previousNode.setNext(nextNode);
+            nextNode.setPrevious(previousNode);
+            this.tail = previousNode;
+            this.size -= 1;
+            return true;
+        }
+
 
         int index = 0;
         Node pointer = this.head;
-        while (pointer.getNext() != this.tail) {
+        while (pointer != this.tail) {
             if (pointer.getData() == dataToRemove) {
                 Node nextNode = pointer.getNext();
                 Node previousNode = pointer.getPrevious();
 
                 previousNode.setNext(nextNode);
                 nextNode.setPrevious(previousNode);
-                pointer = null;
+//                pointer = null;
                 this.size -= 1;
                 return true;
             }
@@ -168,13 +195,13 @@ public class DoublyLinkedList<T> {
 
     public static void main(String[] args) {
         DoublyLinkedList<String> doublyLinkedList = new DoublyLinkedList<String>();
+
         doublyLinkedList.add("A");
         doublyLinkedList.add("B");
         doublyLinkedList.add("C");
         System.out.println(doublyLinkedList);
-        int index = doublyLinkedList.indexOf("A");
+
         doublyLinkedList.remove("A");
-        System.out.println(index);
         System.out.println(doublyLinkedList);
     }
 }
