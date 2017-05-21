@@ -79,9 +79,6 @@ public class DoublyLinkedList<T> {
         if (dataToRemove == null)
             throw new IllegalArgumentException("Can not remove null");
 
-//        int position = this.indexOf(dataToRemove);
-//        if (position == -1)
-//            return false;
         if (this.size() == 1 && this.head.getData() == dataToRemove) {
             this.head = null;
             this.tail = null;
@@ -109,7 +106,6 @@ public class DoublyLinkedList<T> {
             return true;
         }
 
-
         int index = 0;
         Node pointer = this.head;
         while (pointer != this.tail) {
@@ -119,7 +115,6 @@ public class DoublyLinkedList<T> {
 
                 previousNode.setNext(nextNode);
                 nextNode.setPrevious(previousNode);
-//                pointer = null;
                 this.size -= 1;
                 return true;
             }
@@ -133,9 +128,13 @@ public class DoublyLinkedList<T> {
             return this.head.getData() == searchValue ? 1 : -1;
 
         } else {
+
+            if (this.head.getData() == searchValue) return 0;
+            if (this.tail.getData() == searchValue) return this.size();
+
             Node pointer = this.head;
             int index = 0;
-            while (pointer != null) {
+            while (pointer.getNext() != this.tail) {
                 if (pointer.getData() == searchValue) {
                     return index;
                 }
@@ -190,18 +189,5 @@ public class DoublyLinkedList<T> {
             pointer = pointer.getNext();
             total -= 1;
         }
-    }
-
-
-    public static void main(String[] args) {
-        DoublyLinkedList<String> doublyLinkedList = new DoublyLinkedList<String>();
-
-        doublyLinkedList.add("A");
-        doublyLinkedList.add("B");
-        doublyLinkedList.add("C");
-        System.out.println(doublyLinkedList);
-
-        doublyLinkedList.remove("A");
-        System.out.println(doublyLinkedList);
     }
 }

@@ -36,4 +36,25 @@ public class DoublyLinkedListTest {
         Assert.assertEquals("Size should increase by 1 after adding new data ", 1, sizeAfterAddingOneItem);
     }
 
+    @Test
+    public void remove() {
+        doublyLinkedList = new DoublyLinkedList<String>();
+        doublyLinkedList.add("A");
+        doublyLinkedList.add("B");
+        doublyLinkedList.add("C");
+        Assert.assertTrue("Data should be present ",doublyLinkedList.contains("A"));
+        int sizeBeforeRemove = doublyLinkedList.size();
+        doublyLinkedList.remove("A");
+        int sizeAfterRemove = doublyLinkedList.size();
+        Assert.assertFalse("Data should be removed ", doublyLinkedList.contains("A"));
+        Assert.assertEquals("Size should decrease after remove ", sizeBeforeRemove, sizeAfterRemove + 1);
+    }
+
+    @Test
+    public void contains() {
+        doublyLinkedList = new DoublyLinkedList<String>();
+        doublyLinkedList.add("A");
+        Assert.assertTrue(doublyLinkedList.contains("A"));
+        Assert.assertFalse(doublyLinkedList.contains("B"));
+    }
 }
