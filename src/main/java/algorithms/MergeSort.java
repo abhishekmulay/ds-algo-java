@@ -29,8 +29,8 @@ public class MergeSort {
         System.out.println("\t[merge] start=" + start + " mid=" + mid + " end=" + end);
 
         int i = start, j = mid, k=0;
-        int [] temp = new int[arr.length];
-        while (i < mid && j < end) {
+        int [] temp = new int[(end-start)+1];
+        while (i < mid && j <= end) {
             int leftNum = arr[i];
             int rightNum = arr[j];
 
@@ -62,16 +62,23 @@ public class MergeSort {
         }
 
         System.out.println("Copying temp=" + Arrays.toString(temp) + "\t\t arr=" + Arrays.toString(arr));
-        for (int index =0; index < temp.length ; index++) {
-            arr[index] = temp[index];
+        int counter = 0;
+        for (int index =start; index <= end ; index++) {
+            arr[index] = temp[counter];
+            counter += 1;
         }
     }
 
     public static void main(String[] args) {
-        int [] arr = {4, 7, 1, 3, 2, 5, 10, 6, 9, 8};
+        int [] arr = {40, 70, 10, 30, 20, 50, 100, 60, 90, 80};
         System.out.println("Sorting: " + Arrays.toString(arr));
         int[] sorted = MergeSort.sort(arr);
         System.out.println("Sorted " + Arrays.toString(sorted));
+
+//        int test [] = {40, 70, 10, 20, 30, 60};
+//        System.out.println(Arrays.toString(test));
+//        merge(test, 0, 2, 5);
+//        System.out.println(Arrays.toString(test));
     }
 
 }

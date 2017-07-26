@@ -153,25 +153,6 @@ public class DoublyLinkedList<T> {
         return new Node<T>(data, null, null);
     }
 
-    static <T> boolean dataEquals(T data1, T data2) {
-        boolean result = false;
-        if (data1 == null || data2 == null)
-            throw new IllegalArgumentException("One or more arguments are null.");
-        else if (data1 instanceof Integer && data2 instanceof Integer)
-            result = data1 == data2;
-        else if (data1 instanceof String && data2 instanceof String)
-            result = data1.equals(data2);
-        return result;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = head != null ? head.hashCode() : 0;
-        result = 31 * result + (tail != null ? tail.hashCode() : 0);
-        result = 31 * result + size;
-        return result;
-    }
-
     @Override
     public String toString() {
         StringBuffer output = new StringBuffer();
